@@ -4,11 +4,14 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@devcontainers/cli": "^0.80.1",
     "@nx/js": "18.2.4",
     "@nx/workspace": "18.2.4",
-    "nx": "22.0.2"
+    "commander": "^14.0.2",
+    "js-yaml": "^4.1.0",
+    "nx": "22.0.2",
+    "tsx": "^4.20.6"
   },
   "nx": {}
 }
