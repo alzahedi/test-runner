@@ -1,0 +1,213 @@
+# -----------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# -----------------------------------------------------------------------------
+
+#####################################################################################
+# YAML FILE DEFINING ORDERING OF THE TEST SUITES TO BE FED INTO THE TEST SCHEDULER #
+#####################################################################################
+
+#   1) waitcurrent: If a task fails, wait for all the running tasks to finish, but don't schedule new tasks.
+#   2) failfast: Immediately exit when a task fails.
+#   3) waitall: Schedules all tasks, ignoring failures. At the end will exit with error code if any tasks failed.
+#   4) runalways : Execute all tasks in a group regardless of any failues from other groups
+#
+
+## YAML Level mode, modes define in group override this mode
+mode: waitall
+termWaitTimeInMins: 10
+
+groups:
+  - Group: Sanity-Tests
+    Strategy: sequential
+    Mode: failfast
+  # - Group: Test-Setup-Arcee
+  #   Strategy: sequential
+  #   Mode: failfast
+  # - Group: Test-Least-Privilege
+  #   Strategy: sequential
+  #   Mode: failfast
+  # - Group: Test-Basic-Sanity
+  #   Strategy: parallel
+  # - Group: Test-Network-Features
+  #   Strategy: parallel
+  # - Group: Test-Free-Features
+  #   Strategy: sequential
+  # - Group: Test-Paid-Features
+  #   Strategy: sequential
+  # - Group: Post-Test-Cleanup
+  #   Strategy: sequential
+  #   Mode: runalways
+
+tasks:
+  ###
+  # Pattern to add new test suite
+  # Command: python run_tests.py --test-folder-path tests/<suite_name>
+  # Name: <Test suite name>
+  # Group: <Group to which test suite belongs>
+  # TimeoutInMinutes: <Timeout for the test suite>
+  # RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/<suite_name>
+  ##
+
+  - Command: python run_tests.py --test-folder-path tests/one
+    Name: Test One
+    Group: Sanity-Tests
+    #TimeoutInMinutes: 15
+    #RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/sanity
+
+  - Command: python run_tests.py --test-folder-path tests/two
+    Name: Test Two
+    Group: Sanity-Tests
+    #TimeoutInMinutes: 15
+    #RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/sanity
+
+
+  # - Command: python run_tests.py --test-folder-path tests/cleanup --test-filter test_cleanup_before
+  #   Name: Pre test cleanup
+  #   Group: Pre-Test-Cleanup
+  #   TimeoutInMinutes: 30
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/cleanup --test-filter test_cleanup_before
+
+  # - Command: python run_tests.py --test-folder-path tests/setup-arcee --test-filter test_auto_onboarding
+  #   Name: Auto onboarding tests
+  #   Group: Test-Setup-Arcee
+  #   TimeoutInMinutes: 30
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/setup-arcee --test-filter test_auto_onboarding
+
+  # - Command: python run_tests.py --test-folder-path tests/setup-arcee --test-filter test_manual_onboarding
+  #   Name: Manual onboarding tests
+  #   Group: Test-Setup-Arcee
+  #   TimeoutInMinutes: 60
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/setup-arcee --test-filter test_manual_onboarding
+
+  # - Command: python run_tests.py --test-folder-path tests/code-signing
+  #   Name: Code signing tests
+  #   Group: Test-Setup-Arcee
+  #   TimeoutInMinutes: 10
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/code-signing
+
+  # - Command: python run_tests.py --test-folder-path tests/extension-service
+  #   Name: Extension service tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 15
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/extension-service
+
+  # - Command: python run_tests.py --test-folder-path tests/files-folders
+  #   Name: Files and folders tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 15
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/files-folders
+
+  # - Command: python run_tests.py --test-folder-path tests/azure-resource
+  #   Name: Azure resource tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 15
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/azure-resource
+
+  # - Command: python run_tests.py --test-folder-path tests/metadata
+  #   Name: Metadata tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 15
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/metadata
+
+  # - Command: python run_tests.py --test-folder-path tests/upload/inventory-upload
+  #   Name: Inventory upload tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 15
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/upload/inventory-upload
+
+  # - Command: python run_tests.py --test-folder-path tests/upload/proxy-upload
+  #   Name: Proxy upload tests
+  #   Group: Test-Network-Features
+  #   TimeoutInMinutes: 80
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/upload/proxy-upload
+
+  # - Command: python run_tests.py --test-folder-path tests/least-privilege
+  #   Name: Least Privilege tests
+  #   Group: Test-Least-Privilege
+  #   TimeoutInMinutes: 50
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/least-privilege
+
+  # - Command: python run_tests.py --test-folder-path tests/databases
+  #   Name: Database tests
+  #   Group: Test-Free-Features
+  #   TimeoutInMinutes: 60
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/databases
+
+  # - Command: python run_tests.py --test-folder-path tests/telemetry-intelligence
+  #   Name: Telemetry & Intelligence tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 70
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/telemetry-intelligence
+
+  # - Command: python run_tests.py --test-folder-path tests/assessment
+  #   Name: Assessment tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 90
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/assessment
+
+  # - Command: python run_tests.py --test-folder-path tests/microsoft-updates
+  #   Name: Automatic Microsoft updates tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 20
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/microsoft-updates
+
+  # - Command: python run_tests.py --test-folder-path tests/AAD
+  #   Name: AAD Tests
+  #   Group: Test-Free-Features
+  #   TimeoutInMinutes: 25
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/AAD
+
+  # - Command: python run_tests.py --test-folder-path tests/purview
+  #   Name: Purview Tests
+  #   Group: Test-Free-Features
+  #   TimeoutInMinutes: 25
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/purview
+
+  # - Command: python run_tests.py --test-folder-path tests/client-connections
+  #   Name: Client Connection tests
+  #   Group: Test-Free-Features
+  #   TimeoutInMinutes: 30
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/client-connections
+
+  # - Command: python run_tests.py --test-folder-path tests/migration-assessment
+  #   Name: Migration Assessment Tests
+  #   Group: Test-Free-Features
+  #   TimeoutInMinutes: 120
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/migration-assessment
+
+  # - Command: python run_tests.py --test-folder-path tests/upload/billing-usage-upload
+  #   Name: Billing Usage upload tests
+  #   Group: Test-Basic-Sanity
+  #   TimeoutInMinutes: 120
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/upload/billing-usage-upload
+
+  # - Command: python run_tests.py --test-folder-path tests/backups
+  #   Name: Backups tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 45
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/backups
+
+  # - Command: python run_tests.py --test-folder-path tests/restore
+  #   Name: Restore tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 45
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/restore
+
+  # - Command: python run_tests.py --test-folder-path tests/AGs
+  #   Name: AG tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 150
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/AGs
+
+  # - Command: python run_tests.py --test-folder-path tests/mi-link
+  #   Name: MI Link tests
+  #   Group: Test-Paid-Features
+  #   TimeoutInMinutes: 150
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/mi-link
+
+  # - Command: python run_tests.py --test-folder-path tests/cleanup --test-filter test_cleanup_after
+  #   Name: Post test cleanup
+  #   Group: Post-Test-Cleanup
+  #   TimeoutInMinutes: 40
+  #   RunCommandOnTimeout: python timeout_handler.py --test-folder-path tests/cleanup --test-filter test_cleanup_after
+

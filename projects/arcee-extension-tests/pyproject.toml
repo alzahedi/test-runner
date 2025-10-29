@@ -27,9 +27,10 @@ classifiers = [
 dependencies = [
   "pandas==2.1.4",
   "numpy==1.26.2",
-  "azure-cli==2.55.0",
   "pyinstaller==6.3.0",
-  "pytest==7.4.3",
+  "pytest==7.4.4",
+  "pyyaml==6.0",
+  "scheduler @ file://../../Scheduler"
 ]
 
 [project.urls]
@@ -40,11 +41,22 @@ Source = "https://github.com/Alfurquan Zahedi/arcee-extension-tests"
 [tool.hatch.version]
 path = "src/arcee_extension_tests/__about__.py"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.hatch.envs.default]
 extra-dependencies = [
-  "pytest==7.4.3",
-  "pytest-cov==4.1.0",
+  "pytest==7.4.4",
+  "pytest-cov==4.1.0"
 ]
+
+[tool.hatch.envs.build]
+extra-dependencies = [
+  "pyinstaller==6.3.0",
+]
+
+[tool.hatch.envs.build.scripts]
+exe = "pyinstaller --onefile --name=test-runner src/arcee_extension_tests/integration_tests/main.py"
 
 [tool.hatch.envs.types]
 extra-dependencies = [

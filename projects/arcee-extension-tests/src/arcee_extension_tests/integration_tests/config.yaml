@@ -1,0 +1,10 @@
+environment:
+  TEST_ENV: "development"
+  DATABASE_URL: "sqlite:///test.db"
+  API_ENDPOINT: "https://api-dev.example.com"
+  TEST_RESULT_DIRECTORY: "test_results"
+
+pytest_args:
+  - "-v"
+  - "--tb=short"
+  - "tests/"
