@@ -1,0 +1,11 @@
+# Grabs VS Code's devcontainer base image for Ubuntu
+FROM mcr.microsoft.com/vscode/devcontainers/base:focal
+
+# Copy library scripts to execute
+COPY overlay/ /tmp/overlay/
+
+# Make all overlay scripts executable
+RUN chmod +x /tmp/overlay/*.sh
+
+# Install necessary ubuntu package dependencies
+RUN /tmp/overlay/install-packages.sh
