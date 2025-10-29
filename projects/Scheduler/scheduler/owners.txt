@@ -1,0 +1,10 @@
+; See the documentation for syntax:
+; https://onebranch.visualstudio.com/Ownership%20Enforcer/_wiki/wikis/Ownership-Enforcer.wiki?wikiVersion=GBwikiMaster&pagePath=%2FOwnership%20Enforcer%2FConfiguring%20Ownership%20Enforcer&pageId=960
+
+; This indicate owners of the files.
+;
+alzahedi
+
+; Originally written by
+etchang
+qiuylin

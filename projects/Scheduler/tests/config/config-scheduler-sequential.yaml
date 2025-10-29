@@ -1,0 +1,31 @@
+# ==========================================================================
+# YAML FILE WITH SEQUENTIAL ORDERING TO BE USED BY TESTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# This is a demo YAML file having sequential ordering and is used by tests to
+# verify and test out the scheduler code logic.
+# ==========================================================================
+
+mode: waitall
+
+groups:
+  - Group: Group 1
+    Strategy: sequential
+  - Group: Group 2
+    Strategy: sequential
+    # Mode: runalways
+
+tasks:
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task1.ps1
+    Name: Task 1
+    Group: Group 1
+    TimeoutInMinutes: 0.2
+
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task2.ps1
+    Name: Task 2
+    Group: Group 1
+    TimeoutInMinutes: 5
+
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task3.ps1
+    Name: Task 3
+    Group: Group 2
+    TimeoutInMinutes: 5

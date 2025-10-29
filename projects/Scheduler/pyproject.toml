@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "scheduler"
+version = "0.1.2"
+description = "Scheduler is a python package for running, scheduling and monitoring multiple tasks"
+authors = ["Alfurquan Zahedi <alzahedi@microsoft.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pytest = "7.1.3"
+pyyaml = "^6.0"
+psutil = "6.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

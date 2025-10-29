@@ -1,0 +1,30 @@
+# ==========================================================================
+# YAML FILE WITH PARALLEL ORDERING TO BE USED BY TESTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# This is a demo YAML file having parallel ordering and is used by tests to
+# verify and test out the scheduler code logic.
+# ==========================================================================
+
+mode: waitall
+
+groups:
+  - Group: Group 1
+    Strategy: parallel
+  - Group: Group 2
+    Strategy: parallel
+
+tasks:
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task1.ps1
+    Name: Task 1
+    Group: Group 1
+    TimeoutInMinutes: 5
+
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task2.ps1
+    Name: Task 2
+    Group: Group 1
+    TimeoutInMinutes: 5
+
+  - Command: pwsh /workspaces/DevOps/Scheduler/tests/scripts/task3.ps1
+    Name: Task 3
+    Group: Group 2
+    TimeoutInMinutes: 5
