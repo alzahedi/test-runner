@@ -1,6 +1,6 @@
 {
     "name": "TestRunner Dev Container",
-    "image": "testrunner.azurecr.io/devcontainer/test-runner:7addd00a67a80df9d262ad0f0086a50497e44164b30eba3a552485168978a89b",
+    "image": "testrunner.azurecr.io/devcontainer/test-runner:7deb9f712c5ca71c3e981dc502c0d513562ec7f46cbf242d5728f5363029126d",
     "remoteUser": "vscode",
     "containerUser": "vscode"
 }

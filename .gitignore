@@ -26,7 +26,9 @@ __pycache__/
 venv/
 env/
 
-
+build/
+.validate_log/
+test_results/
 .nx/workspace-data
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
