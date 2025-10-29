@@ -12,7 +12,7 @@ else
     ENLISTMENT_ROOT=${BUILD_SOURCESDIRECTORY}
 fi
 echo "Enlistment root is ${ENLISTMENT_ROOT}"
-pushd Scheduler
+pushd projects/Scheduler
 
 # Get Python version at runtime
 echo "##[group]Python runtime version"

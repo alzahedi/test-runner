@@ -1,0 +1,29 @@
+{
+  "name": "scheduler",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "./projects/Scheduler/scheduler/scripts/build-scheduler-whl.sh",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "./projects/Scheduler/scheduler/scripts/publish-scheduler-whl.sh",
+            "forwardAllArgs": false
+          }
+        ]
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}
